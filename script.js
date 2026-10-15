@@ -16,13 +16,14 @@ async function  getWeather(cityName) {
 
         if (data.cod === "404") {
             alert("Город не найден")
+            input.value = ""
             return 
         }
 
         localStorage.setItem("lastCity", data.name);
 
         const roundedTemp = Math.round(data.main.temp);
-        degreesElement.textContent = roundedTemp;
+        degreesElement.textContent = `${roundedTemp}°`;
         cityElement.textContent = data.name; 
 
         windElement.textContent = data.wind.speed;
@@ -35,6 +36,8 @@ async function  getWeather(cityName) {
         } else {
             document.body.style.backgroundColor = "#ffe0b2"
         }
+        
+        input.value = ""
 
         console.log(data);
     } catch (error) {
